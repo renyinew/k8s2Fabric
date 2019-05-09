@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: example.com
-  name: orderer0
+  name: orderer
 spec:
   replicas: 1
   template:
@@ -12,10 +12,10 @@ spec:
         app: hyperledger
         role: orderer
         org: orderer-org
-        orderer-id: orderer0
+        orderer-id: orderer
     spec:
       containers:
-      - name: orderer0
+      - name: orderer
         image: hyperledger/fabric-orderer:latest
         env:
         - name: ORDERER_GENERAL_LOGLEVEL
@@ -49,10 +49,10 @@ spec:
         volumeMounts:
          - mountPath: /var/hyperledger/orderer/msp
            name: nfs
-           subPath: crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/msp
+           subPath: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp
          - mountPath: /var/hyperledger/orderer/tls
            name: nfs
-           subPath: crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/tls
+           subPath: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls
          - mountPath: /var/hyperledger/orderer/genesis.block
            name: nfs
            subPath: channel-artifacts/genesis.block

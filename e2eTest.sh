@@ -32,25 +32,6 @@ while [ "${JOBSTATUS}" != "1/1" ]; do
 done
 echo "Join Channel Completed Successfully"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Install chaincode on each peer
 echo -e "\nCreating installchaincode job"
 echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/chaincode_install.yaml"
