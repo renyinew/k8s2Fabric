@@ -1,0 +1,311 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: fabric-zk-kafka
+   name: zk-headless
+spec:
+ selector:
+   app: hyperledger
+   role: zookeeper
+   ns: fabric-zk-kafka
+ clusterIP: None
+
+ ports:
+   - name: server
+     protocol: TCP
+     port: 2888
+
+   - name: leader-election
+     protocol: TCP
+     port: 3888
+
+   - name: client
+     protocol: TCP
+     port: 2181
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: fabric-zk-kafka
+   name: kafka0
+spec:
+ selector:
+   app: hyperledger
+   role: kafka
+   kafka-id: kafka0
+ clusterIP: None
+ ports:
+   - name: kafka-port1
+     protocol: TCP
+     port: 9092
+
+   - name: kafka-port2
+     protocol: TCP
+     port: 9093
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: fabric-zk-kafka
+   name: kafka0
+spec:
+ selector:
+   app: hyperledger
+   role: kafka
+   kafka-id: kafka0
+ clusterIP: None
+ ports:
+   - name: kafka-port1
+     protocol: TCP
+     port: 9092
+
+   - name: kafka-port2
+     protocol: TCP
+     port: 9093
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: fabric-zk-kafka
+   name: kafka1
+spec:
+ selector:
+   app: hyperledger
+   role: kafka
+   kafka-id: kafka1
+ clusterIP: None
+ ports:
+   - name: kafka-port1
+     protocol: TCP
+     port: 9092
+
+   - name: kafka-port2
+     protocol: TCP
+     port: 9093
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: fabric-zk-kafka
+   name: kafka2
+spec:
+ selector:
+   app: hyperledger
+   role: kafka
+   kafka-id: kafka2
+ clusterIP: None
+ ports:
+   - name: kafka-port1
+     protocol: TCP
+     port: 9092
+
+   - name: kafka-port2
+     protocol: TCP
+     port: 9093
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: fabric-zk-kafka
+   name: kafka3
+spec:
+ selector:
+   app: hyperledger
+   role: kafka
+   kafka-id: kafka3
+ clusterIP: None
+ ports:
+   - name: kafka-port1
+     protocol: TCP
+     port: 9092
+
+   - name: kafka-port2
+     protocol: TCP
+     port: 9093
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: example.com
+  name: orderer0
+spec:
+ selector:
+   app: hyperledger
+   role: orderer
+   org: orderer-org
+   orderer-id: orderer0
+ clusterIP: None
+ ports:
+   - name: listen-endpoint
+     protocol: TCP
+     port: 7050
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org1.example.com
+   name: ca
+spec:
+ selector:
+   app: hyperledger
+   role: ca
+   org: org1.example.com
+   name: ca
+ clusterIP: None
+ ports:
+   - name: endpoint
+     protocol: TCP
+     port: 7054
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org1.example.com
+   name: peer0
+spec:
+ selector:
+   app: hyperledger
+   role: peer
+   peer-id: peer0
+   org: peer-org1
+ clusterIP: None
+ ports:
+   - name: listen-endpoint
+     protocol: TCP
+     port: 7051
+
+   - name: chaincode-listen
+     protocol: TCP
+     port: 7052
+
+   - name: event-listen
+     protocol: TCP
+     port: 7053
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org2.example.com
+   name: ca
+spec:
+ selector:
+   app: hyperledger
+   role: ca
+   org: org2.example.com
+   name: ca
+ clusterIP: None
+ ports:
+   - name: endpoint
+     protocol: TCP
+     port: 7054
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org2.example.com
+   name: peer0
+spec:
+ selector:
+   app: hyperledger
+   role: peer
+   peer-id: peer0
+   org: peer-org2
+ clusterIP: None
+ ports:
+   - name: listen-endpoint
+     protocol: TCP
+     port: 7051
+
+   - name: chaincode-listen
+     protocol: TCP
+     port: 7052
+
+   - name: event-listen
+     protocol: TCP
+     port: 7053
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org3.example.com
+   name: ca
+spec:
+ selector:
+   app: hyperledger
+   role: ca
+   org: org3.example.com
+   name: ca
+ clusterIP: None
+ ports:
+   - name: endpoint
+     protocol: TCP
+     port: 7054
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org3.example.com
+   name: peer0
+spec:
+ selector:
+   app: hyperledger
+   role: peer
+   peer-id: peer0
+   org: peer-org3
+ clusterIP: None
+ ports:
+   - name: listen-endpoint
+     protocol: TCP
+     port: 7051
+
+   - name: chaincode-listen
+     protocol: TCP
+     port: 7052
+
+   - name: event-listen
+     protocol: TCP
+     port: 7053
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org4.example.com
+   name: ca
+spec:
+ selector:
+   app: hyperledger
+   role: ca
+   org: org4.example.com
+   name: ca
+ clusterIP: None
+ ports:
+   - name: endpoint
+     protocol: TCP
+     port: 7054
+---
+apiVersion: v1
+kind: Service
+metadata:
+   namespace: org4.example.com
+   name: peer0
+spec:
+ selector:
+   app: hyperledger
+   role: peer
+   peer-id: peer0
+   org: peer-org4
+ clusterIP: None
+ ports:
+   - name: listen-endpoint
+     protocol: TCP
+     port: 7051
+
+   - name: chaincode-listen
+     protocol: TCP
+     port: 7052
+
+   - name: event-listen
+     protocol: TCP
+     port: 7053
+---

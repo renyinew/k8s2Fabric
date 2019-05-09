@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: fabric-zk-kafka
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: org1.example.com
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: org2.example.com
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: org3.example.com
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+    name: org4.example.com
