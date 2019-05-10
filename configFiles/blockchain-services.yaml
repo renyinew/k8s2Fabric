@@ -127,7 +127,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: example.com
+  namespace: example-com
   name: orderer
 spec:
  selector:
@@ -144,13 +144,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org1.example.com
+   namespace: org1-example-com
    name: ca
 spec:
  selector:
    app: hyperledger
    role: ca
-   org: org1.example.com
+   org: org1-example-com
    name: ca
  clusterIP: None
  ports:
@@ -161,7 +161,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org1.example.com
+   namespace: org1-example-com
    name: peer0
 spec:
  selector:
@@ -186,13 +186,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org2.example.com
+   namespace: org2-example-com
    name: ca
 spec:
  selector:
    app: hyperledger
    role: ca
-   org: org2.example.com
+   org: org2-example-com
    name: ca
  clusterIP: None
  ports:
@@ -203,7 +203,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org2.example.com
+   namespace: org2-example-com
    name: peer0
 spec:
  selector:
@@ -228,13 +228,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org3.example.com
+   namespace: org3-example-com
    name: ca
 spec:
  selector:
    app: hyperledger
    role: ca
-   org: org3.example.com
+   org: org3-example-com
    name: ca
  clusterIP: None
  ports:
@@ -245,7 +245,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org3.example.com
+   namespace: org3-example-com
    name: peer0
 spec:
  selector:
@@ -270,13 +270,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org4.example.com
+   namespace: org4-example-com
    name: ca
 spec:
  selector:
    app: hyperledger
    role: ca
-   org: org4.example.com
+   org: org4-example-com
    name: ca
  clusterIP: None
  ports:
@@ -287,7 +287,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-   namespace: org4.example.com
+   namespace: org4-example-com
    name: peer0
 spec:
  selector:

@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: org3.example.com
+  namespace: org3-example-com
   name: ca
 spec:
   replicas: 1
@@ -11,7 +11,7 @@ spec:
       labels:
        app: hyperledger
        role: ca
-       org: org3.example.com
+       org: org3-example-com
        name: ca
     spec:
       containers:
@@ -23,19 +23,19 @@ spec:
           - name:  FABRIC_CA_SERVER_CA_NAME
             value: ca-org3
           - name: FABRIC_CA_SERVER_CA_CERTFILE
-            value: /etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
+            value: /etc/hyperledger/fabric-ca-server-config/ca.org3-example-com-cert.pem
           - name: FABRIC_CA_SERVER_CA_KEYFILE
-            value: /etc/hyperledger/fabric-ca-server-config/a98f2e9ba6f2e7daaa5083cb8159ecbe31eebf0c9f01df46c655bc00bb636ce7_sk
+            value: /etc/hyperledger/fabric-ca-server-config/key.pem
           - name:  FABRIC_CA_SERVER_TLS_ENABLED
             value: "true"
           ports:
             - containerPort: 7054
           command: ["sh"]
-          args: ["-c", "fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/a98f2e9ba6f2e7daaa5083cb8159ecbe31eebf0c9f01df46c655bc00bb636ce7_sk -b admin:adminpw -d"]
+          args: ["-c", "fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org3-example-com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/a98f2e9ba6f2e7daaa5083cb8159ecbe31eebf0c9f01df46c655bc00bb636ce7_sk -b admin:adminpw -d"]
           volumeMounts:
             - mountPath: /etc/hyperledger/fabric-ca-server-config/
               name: nfs
-              subPath: crypto-config/peerOrganizations/org3.example.com/ca/
+              subPath: crypto-config/peerOrganizations/org3-example-com/ca/
       volumes:
         - name: nfs
           persistentVolumeClaim:
@@ -44,7 +44,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: org3.example.com
+  namespace: org3-example-com
   name:	peer0-org3
 spec:
   replicas: 1
@@ -81,11 +81,11 @@ spec:
         - name: CORE_PEER_TLS_SERVERHOSTOVERRIDE
           value: peer0.org3-shuolitech-cn
         - name: CORE_PEER_ID
-          value: "peer0.org3.example.com"
+          value: "peer0.org3-example-com"
         - name: CORE_PEER_ADDRESS
-          value: "peer0.org3.example.com:7051"
+          value: "peer0.org3-example-com:7051"
         - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
-          value: "peer0.org3.example.com:7051"
+          value: "peer0.org3-example-com:7051"
         - name: CORE_PEER_LOCALMSPID
           value: "org3MSP"
         - name: CORE_PEER_ADDRESSAUTODETECT
@@ -101,10 +101,10 @@ spec:
         volumeMounts:
          - mountPath: /etc/hyperledger/fabric/msp
            name: nfs
-           subPath: crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp
+           subPath: crypto-config/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/msp
          - mountPath: /etc/hyperledger/fabric/tls
            name: nfs
-           subPath: crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls
+           subPath: crypto-config/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls
          - mountPath: /host/var/run/
            name: run
       volumes:
@@ -118,7 +118,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-   namespace: org3.example.com
+   namespace: org3-example-com
    name: cli
 spec:
   replicas: 1
@@ -142,15 +142,15 @@ spec:
           - name: CORE_PEER_TLS_ENABLED
             value: "true"
           - name: CORE_PEER_TLS_CERT_FILE
-            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/server.crt"
+            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.crt"
           - name: CORE_PEER_TLS_KEY_FILE
-            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/server.key"
+            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.key"
           - name: CORE_PEER_TLS_ROOTCERT_FILE
-            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt"
+            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/ca.crt"
           - name: CORE_PEER_MSPCONFIGPATH
-            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp"
+            value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/users/Admin@org3-example-com/msp"
           - name: CORE_PEER_ADDRESS
-            value: "peer0.org3.example.com:7051"
+            value: "peer0.org3-example-com:7051"
           - name: CORE_PEER_LOCALMSPID
             value: "org3MSP"
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer

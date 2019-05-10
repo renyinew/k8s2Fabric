@@ -28,11 +28,11 @@ spec:
         - name: FABRIC_CFG_PATH
           value: /etc/hyperledger/fabric
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+          value: /shared/crypto-config/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp
         - name: CORE_PEER_LOCALMSPID
           value: Org1MSP
         - name: CORE_PEER_ADDRESS
-          value: peer0.org1.example.com:7051
+          value: peer0.org1-example-com:7051
         - name: GODEBUG
           value: "netdns=go"
         volumeMounts:
@@ -55,7 +55,7 @@ spec:
         - name: CORE_PEER_LOCALMSPID
           value: Org2MSP
         - name: CORE_PEER_ADDRESS
-          value: peer0.org2.example.com:7051
+          value: peer0.org2-example-com:7051
         - name: GODEBUG
           value: "netdns=go"
         volumeMounts:
@@ -74,11 +74,11 @@ spec:
         - name: FABRIC_CFG_PATH
           value: /etc/hyperledger/fabric
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp
+          value: /shared/crypto-config/peerOrganizations/org3-example-com/users/Admin@org3-example-com/msp
         - name: CORE_PEER_LOCALMSPID
           value: Org3MSP
         - name: CORE_PEER_ADDRESS
-          value: peer0.org2.example.com:7051
+          value: peer0.org3-example-com:7051
         - name: GODEBUG
           value: "netdns=go"
         volumeMounts:
@@ -97,11 +97,11 @@ spec:
         - name: FABRIC_CFG_PATH
           value: /etc/hyperledger/fabric
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org4.example.com/users/Admin@org4.example.com/msp
+          value: /shared/crypto-config/peerOrganizations/org4-example-com/users/Admin@org4-example-com/msp
         - name: CORE_PEER_LOCALMSPID
           value: Org4MSP
         - name: CORE_PEER_ADDRESS
-          value: peer0.org4.example.com:7051
+          value: peer0.org4-example-com:7051
         - name: GODEBUG
           value: "netdns=go"
         volumeMounts:
