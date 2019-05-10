@@ -7,6 +7,15 @@ else
     exit
 fi
 
+# Creating namespace and service
+echo -e "\nCreating namespace"
+echo "Running: kubectl apply -f ${KUBECONFIG_FOLDER}/blockchain-namespace.yaml"
+kubectl apply -f ${KUBECONFIG_FOLDER}/blockchain-namespace.yaml
+
+echo -e "\nCreating services"
+echo "Running: kubectl apply -f ${KUBECONFIG_FOLDER}/blockchain-services.yaml"
+kubectl apply -f ${KUBECONFIG_FOLDER}/blockchain-services.yaml
+
 # Creating Persistant Volume
 echo -e "\nCreating volume"
 if [ "$(kubectl get pvc | grep nfs-pv | awk '{print $2}')" != "Bound" ]; then
