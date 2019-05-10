@@ -2,6 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  namespace: org1.example.com
   name: chaincodeinstantiate
 spec:
   backoffLimit: 1

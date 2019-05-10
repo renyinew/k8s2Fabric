@@ -2,6 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  namespace: temp
   name: chaincodeinstall
 spec:
   backoffLimit: 1

@@ -2,6 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  namespace: temp
   name: joinchannel
 spec:
   backoffLimit: 1
