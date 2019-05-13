@@ -22,6 +22,10 @@ if [ "$(kubectl get pvc | grep nfs-pv | awk '{print $2}')" != "Bound" ]; then
     echo "The Persistant Volume does not seem to exist or is not bound"
     echo "Creating Persistant Volume"
 
+    echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/createNfsPV.yaml"
+    kubectl create -f ${KUBECONFIG_FOLDER}/createNfsPV.yaml
+    sleep 5
+
     echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/createNfsVolume.yaml"
     kubectl create -f ${KUBECONFIG_FOLDER}/createNfsVolume.yaml
     sleep 5

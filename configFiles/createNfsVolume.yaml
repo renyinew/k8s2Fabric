@@ -7,7 +7,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: "slow"
+  storageClassName: "temp"
   resources:
     requests:
       storage: 1Gi
@@ -15,12 +15,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: temp
+  namespace: example-com
   name: nfs-pvc-example-com
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: "slow"
+  storageClassName: "example-com"
   resources:
     requests:
       storage: 1Gi
@@ -28,12 +28,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: temp
+  namespace: org1-example-com
   name: nfs-pvc-org1-example-com
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: "slow"
+  storageClassName: "org1-example-com"
   resources:
     requests:
       storage: 1Gi
@@ -41,12 +41,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: temp
+  namespace: org2-example-com
   name: nfs-pvc-org2-example-com
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: "slow"
+  storageClassName: "org2-example-com"
   resources:
     requests:
       storage: 1Gi
@@ -54,12 +54,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: temp
+  namespace: org3-example-com
   name: nfs-pvc-org3-example-com
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: "slow"
+  storageClassName: "org3-example-com"
   resources:
     requests:
       storage: 1Gi
@@ -67,12 +67,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: temp
+  namespace: org4-example-com
   name: nfs-pvc-org4-example-com
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: "slow"
+  storageClassName: "org4-example-com"
   resources:
     requests:
       storage: 1Gi

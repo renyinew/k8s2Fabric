@@ -2,8 +2,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  namespace: temp
-  name: nfs-pv
+  name: nfs-pv-temp
 spec:
   capacity:
     storage: 1Gi
@@ -11,7 +10,87 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
-  storageClassName: slow
+  storageClassName: temp
   nfs:
     path: /data/share/k8s2Fabric/
-    server: 45.76.160.101
+    server: 45.32.123.148
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-example
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: example-com
+  nfs:
+    path: /data/share/k8s2Fabric/
+    server: 45.32.123.148
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-org1-example-com
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: org1-example-com
+  nfs:
+    path: /data/share/k8s2Fabric/
+    server: 45.32.123.148
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-org2-example-com
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: org2-example-com
+  nfs:
+    path: /data/share/k8s2Fabric/
+    server: 45.32.123.148
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-org3-example-com
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: org3-example-com
+  nfs:
+    path: /data/share/k8s2Fabric/
+    server: 45.32.123.148
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-org4-example-com
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: org4-example-com
+  nfs:
+    path: /data/share/k8s2Fabric/
+    server: 45.32.123.148

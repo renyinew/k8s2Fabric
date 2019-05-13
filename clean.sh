@@ -26,6 +26,7 @@ kubectl delete -f ${KUBECONFIG_FOLDER}/generateArtifactsJob.yaml
 kubectl delete -f ${KUBECONFIG_FOLDER}/copyArtifactsJob.yaml
 
 kubectl delete -f ${KUBECONFIG_FOLDER}/createNfsVolume.yaml
+kubectl delete -f ${KUBECONFIG_FOLDER}/createNfsPV.yaml
 
 sleep 15
 
