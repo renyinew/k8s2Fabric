@@ -14,7 +14,7 @@ spec:
       volumes:
         - name: nfs
           persistentVolumeClaim:
-            claimName: nfs-pvc
+            claimName: nfs-pvc-temp
       containers:
       - name: createchanneltx
         image: hyperledger/fabric-tools:1.2.1
