@@ -36,5 +36,3 @@ spec:
               value: "false"
             - name: KAFKA_ADVERTISED_HOST_NAME
               value: "kafka2.fabric-zk-kafka"
-
-     port: 9093
