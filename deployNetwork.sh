@@ -83,9 +83,6 @@ while [ "${NUMPENDING}" != "0" ]; do
     sleep 1
 done
 
-echo "Waiting for 60 seconds for zookeeper and kafka to settle"
-sleep 60
-
 # Create peers, ca, orderer using Kubernetes Deployments
 echo -e "\nCreating new Deployment to create two peers in network"
 echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/orderer.yaml"

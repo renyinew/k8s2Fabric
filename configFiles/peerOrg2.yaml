@@ -31,7 +31,7 @@ spec:
           ports:
             - containerPort: 7054
           command: ["sh"]
-          args:  ["-c", "fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org2-example-com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/22034a400ef7ebf308dcdbb37ea67f714ef5ebfef5523e428a7c7888854aa4a9_sk -b admin:adminpw -d"]
+          args:  ["-c", "fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.org2-example-com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/key.pem -b admin:adminpw -d"]
           volumeMounts:
             - mountPath: /etc/hyperledger/fabric-ca-server-config/
               name: nfs
