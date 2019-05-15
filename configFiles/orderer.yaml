@@ -49,10 +49,10 @@ spec:
         volumeMounts:
          - mountPath: /var/hyperledger/orderer/msp
            name: nfs
-           subPath: crypto-config/ordererOrganizations/example.com/orderers/orderer-example-com/msp
+           subPath: crypto-config/ordererOrganizations/example.com/orderers/example-com/msp
          - mountPath: /var/hyperledger/orderer/tls
            name: nfs
-           subPath: crypto-config/ordererOrganizations/example.com/orderers/orderer-example-com/tls
+           subPath: crypto-config/ordererOrganizations/example.com/orderers/example-com/tls
          - mountPath: /var/hyperledger/orderer/genesis.block
            name: nfs
            subPath: channel-artifacts/genesis.block
