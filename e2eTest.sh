@@ -1,3 +1,10 @@
+if [ -d "${PWD}/configFiles" ]; then
+    KUBECONFIG_FOLDER=${PWD}/configFiles
+else
+    echo "Configuration files are not found."
+    exit
+fi
+
 # Generate channel artifacts using configtx.yaml and then create channel
 echo -e "\nCreating channel transaction artifact and a channel"
 echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/create_channel.yaml"

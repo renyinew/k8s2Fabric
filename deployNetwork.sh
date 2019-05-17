@@ -109,6 +109,4 @@ while [ "${NUMPENDING}" != "0" ]; do
     sleep 1
 done
 
-echo "Waiting for 15 seconds for peers and orderer to settle"
-sleep 15
 echo -e "\nNetwork Setup Completed !!"

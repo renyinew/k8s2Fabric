@@ -30,28 +30,39 @@ spec:
           name: nfs
 
       - name: createchannel
-        image: hyperledger/fabric-peer:1.2.1
-        imagePullPolicy: Always
-        command: ["sh", "-c", "while [ ! -f /shared/status_channeltx_complete ]; do echo Waiting for channeltx; sleep 2; done; peer channel create -o ${ORDERER_URL} -c ${CHANNEL_NAME} -f /shared/${CHANNEL_NAME}.tx && rm /shared/status_channeltx_complete && touch /shared/status_channelcreate_complete"]
+        image: hyperledger/fabric-tools:1.2.1
         env:
         - name: CHANNEL_NAME
           value: channel1
         - name: ORDERER_URL
           value: orderer.example-com:7050
-        - name: CORE_PEER_ADDRESSAUTODETECT
-          value: "false"
-        - name: CORE_PEER_NETWORKID
-          value: nid1
-        - name: CORE_PEER_LOCALMSPID
-          value: Org1MSP
+        - name: CORE_VM_ENDPOINT
+          value: "unix:///host/var/run/docker.sock"
+        - name: GOPATH
+          value: "/opt/gopath"
+        - name: FABRIC_LOGGING_SPEC
+          value: "DEBUG"
+        - name: CORE_PEER_ID
+          value: "cli"
+        - name: CORE_PEER_TLS_ENABLED
+          value: "true"
+        - name: CORE_PEER_TLS_CERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.crt"
+        - name: CORE_PEER_TLS_KEY_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.key"
+        - name: CORE_PEER_TLS_ROOTCERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/msp/
-        - name: CORE_LOGGING_LEVEL
-          value: debug
-        - name: FABRIC_CFG_PATH
-          value: /etc/hyperledger/fabric
-        - name: GODEBUG
-          value: "netdns=go"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp"
+        - name: CORE_PEER_ADDRESS
+          value: "peer0.org1-example-com:7051"
+        - name: CORE_PEER_LOCALMSPID
+          value: "Org1MSP"
+        workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+        command: ["sh", "-c", "while [ ! -f /shared/status_channeltx_complete ]; do echo Waiting for channeltx; sleep 2; done; peer channel create -o ${ORDERER_URL} -c ${CHANNEL_NAME} -f /shared/${CHANNEL_NAME}.tx --tls --cafile  /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example-com/orderers/orderer.example-com/msp/tlscacerts/tlsca.example-com-cert.pem && rm /shared/status_channeltx_complete && touch /shared/status_channelcreate_complete"]
         volumeMounts:
-        - mountPath: /shared
-          name: nfs
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+           name: nfs
+           subPath: crypto-config
+         - mountPath: /shared/
+           name: nfs

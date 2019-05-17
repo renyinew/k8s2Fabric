@@ -18,92 +18,180 @@ spec:
       containers:
       - name: chaincodeinstall1
         image: hyperledger/fabric-tools:1.2.1
-        imagePullPolicy: Always
-        command: ["sh", "-c", "echo $GOPATH; cp -r /shared/artifacts/chaincode $GOPATH/src/; ls $GOPATH/src; peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p chaincode_example02/"]
         env:
         - name: CHAINCODE_NAME
           value: "cc"
         - name: CHAINCODE_VERSION
           value: "1.0"
-        - name: FABRIC_CFG_PATH
-          value: /etc/hyperledger/fabric
+        - name: CHANNEL_NAME
+          value: channel1
+        - name: ORDERER_URL
+          value: orderer.example-com:7050
+        - name: CORE_VM_ENDPOINT
+          value: "unix:///host/var/run/docker.sock"
+        - name: GOPATH
+          value: "/opt/gopath"
+        - name: FABRIC_LOGGING_SPEC
+          value: "DEBUG"
+        - name: CORE_PEER_ID
+          value: "cli"
+        - name: CORE_PEER_TLS_ENABLED
+          value: "true"
+        - name: CORE_PEER_TLS_CERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.crt"
+        - name: CORE_PEER_TLS_KEY_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.key"
+        - name: CORE_PEER_TLS_ROOTCERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp
-        - name: CORE_PEER_LOCALMSPID
-          value: Org1MSP
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp"
         - name: CORE_PEER_ADDRESS
-          value: peer0.org1-example-com:7051
-        - name: GODEBUG
-          value: "netdns=go"
+          value: "peer0.org1-example-com:7051"
+        - name: CORE_PEER_LOCALMSPID
+          value: "Org1MSP"
+        workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
         volumeMounts:
-        - mountPath: /shared
-          name: nfs
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
+           name: nfs
+           subPath: chaincode/chaincode_example02/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+           name: nfs
+           subPath: crypto-config
+         - mountPath: /shared/
+           name: nfs
 
       - name: chaincodeinstall2
         image: hyperledger/fabric-tools:1.2.1
-        imagePullPolicy: Always
-        command: ["sh", "-c", "echo $GOPATH; cp -r /shared/artifacts/chaincode $GOPATH/src/; ls $GOPATH/src; peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p chaincode_example02/"]
         env:
         - name: CHAINCODE_NAME
           value: "cc"
         - name: CHAINCODE_VERSION
           value: "1.0"
-        - name: FABRIC_CFG_PATH
-          value: /etc/hyperledger/fabric
+        - name: CHANNEL_NAME
+          value: channel1
+        - name: ORDERER_URL
+          value: orderer.example-com:7050
+        - name: CORE_VM_ENDPOINT
+          value: "unix:///host/var/run/docker.sock"
+        - name: GOPATH
+          value: "/opt/gopath"
+        - name: FABRIC_LOGGING_SPEC
+          value: "DEBUG"
+        - name: CORE_PEER_ID
+          value: "cli"
+        - name: CORE_PEER_TLS_ENABLED
+          value: "true"
+        - name: CORE_PEER_TLS_CERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/server.crt"
+        - name: CORE_PEER_TLS_KEY_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/server.key"
+        - name: CORE_PEER_TLS_ROOTCERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org2-example-com/users/Admin@org2-example-com/msp
-        - name: CORE_PEER_LOCALMSPID
-          value: Org2MSP
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/users/Admin@org2-example-com/msp"
         - name: CORE_PEER_ADDRESS
-          value: peer0.org2-example-com:7051
-        - name: GODEBUG
-          value: "netdns=go"
+          value: "peer0.org2-example-com:7051"
+        - name: CORE_PEER_LOCALMSPID
+          value: "Org2MSP"
+        workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
         volumeMounts:
-        - mountPath: /shared
-          name: nfs
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
+           name: nfs
+           subPath: chaincode/chaincode_example02/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+           name: nfs
+           subPath: crypto-config
+         - mountPath: /shared/
+           name: nfs
 
       - name: chaincodeinstall3
         image: hyperledger/fabric-tools:1.2.1
-        imagePullPolicy: Always
-        command: ["sh", "-c", "echo $GOPATH; cp -r /shared/artifacts/chaincode $GOPATH/src/; ls $GOPATH/src; peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p chaincode_example02/"]
         env:
         - name: CHAINCODE_NAME
           value: "cc"
         - name: CHAINCODE_VERSION
           value: "1.0"
-        - name: FABRIC_CFG_PATH
-          value: /etc/hyperledger/fabric
+        - name: CHANNEL_NAME
+          value: channel1
+        - name: ORDERER_URL
+          value: orderer.example-com:7050
+        - name: CORE_VM_ENDPOINT
+          value: "unix:///host/var/run/docker.sock"
+        - name: GOPATH
+          value: "/opt/gopath"
+        - name: FABRIC_LOGGING_SPEC
+          value: "DEBUG"
+        - name: CORE_PEER_ID
+          value: "cli"
+        - name: CORE_PEER_TLS_ENABLED
+          value: "true"
+        - name: CORE_PEER_TLS_CERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.crt"
+        - name: CORE_PEER_TLS_KEY_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.key"
+        - name: CORE_PEER_TLS_ROOTCERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org3-example-com/users/Admin@org3-example-com/msp
-        - name: CORE_PEER_LOCALMSPID
-          value: Org3MSP
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/users/Admin@org3-example-com/msp"
         - name: CORE_PEER_ADDRESS
-          value: peer0.org3-example-com:7051
-        - name: GODEBUG
-          value: "netdns=go"
+          value: "peer0.org3-example-com:7051"
+        - name: CORE_PEER_LOCALMSPID
+          value: "Org3MSP"
+        workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
         volumeMounts:
-        - mountPath: /shared
-          name: nfs
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
+           name: nfs
+           subPath: chaincode/chaincode_example02/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+           name: nfs
+           subPath: crypto-config
+         - mountPath: /shared/
+           name: nfs
 
       - name: chaincodeinstall4
         image: hyperledger/fabric-tools:1.2.1
-        imagePullPolicy: Always
-        command: ["sh", "-c", "echo $GOPATH; cp -r /shared/artifacts/chaincode $GOPATH/src/; ls $GOPATH/src; peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p chaincode_example02/"]
         env:
         - name: CHAINCODE_NAME
           value: "cc"
         - name: CHAINCODE_VERSION
           value: "1.0"
-        - name: FABRIC_CFG_PATH
-          value: /etc/hyperledger/fabric
+        - name: CHANNEL_NAME
+          value: channel1
+        - name: ORDERER_URL
+          value: orderer.example-com:7050
+        - name: CORE_VM_ENDPOINT
+          value: "unix:///host/var/run/docker.sock"
+        - name: GOPATH
+          value: "/opt/gopath"
+        - name: FABRIC_LOGGING_SPEC
+          value: "DEBUG"
+        - name: CORE_PEER_ID
+          value: "cli"
+        - name: CORE_PEER_TLS_ENABLED
+          value: "true"
+        - name: CORE_PEER_TLS_CERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/server.crt"
+        - name: CORE_PEER_TLS_KEY_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/server.key"
+        - name: CORE_PEER_TLS_ROOTCERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org4-example-com/users/Admin@org4-example-com/msp
-        - name: CORE_PEER_LOCALMSPID
-          value: Org4MSP
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/users/Admin@org4-example-com/msp"
         - name: CORE_PEER_ADDRESS
-          value: peer0.org4-example-com:7051
-        - name: GODEBUG
-          value: "netdns=go"
+          value: "peer0.org4-example-com:7051"
+        - name: CORE_PEER_LOCALMSPID
+          value: "Org4MSP"
+        workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
         volumeMounts:
-        - mountPath: /shared
-          name: nfs
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
+           name: nfs
+           subPath: chaincode/chaincode_example02/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+           name: nfs
+           subPath: crypto-config
+         - mountPath: /shared/
+           name: nfs

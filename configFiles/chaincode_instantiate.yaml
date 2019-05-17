@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  namespace: org1-example-com
+  namespace: temp
   name: chaincodeinstantiate
 spec:
   backoffLimit: 1
@@ -14,29 +14,46 @@ spec:
       volumes:
         - name: nfs
           persistentVolumeClaim:
-            claimName: nfs-pvc-org1-example-com
+            claimName: temp
       containers:
       - name: chaincodeinstantiate
         image: hyperledger/fabric-tools:1.2.1
-        imagePullPolicy: Always
-        command: ["sh", "-c", "peer chaincode instantiate -o blockchain-orderer:31010 -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -c '{\"Args\":[\"init\",\"a\",\"100\",\"b\",\"200\"]}'"]
         env:
-        - name: CHANNEL_NAME
-          value: channel1
         - name: CHAINCODE_NAME
           value: "cc"
         - name: CHAINCODE_VERSION
           value: "1.0"
-        - name: FABRIC_CFG_PATH
-          value: /etc/hyperledger/fabric
+        - name: CHANNEL_NAME
+          value: channel1
+        - name: ORDERER_URL
+          value: orderer.example-com:7050
+        - name: CORE_VM_ENDPOINT
+          value: "unix:///host/var/run/docker.sock"
+        - name: GOPATH
+          value: "/opt/gopath"
+        - name: FABRIC_LOGGING_SPEC
+          value: "DEBUG"
+        - name: CORE_PEER_ID
+          value: "cli"
+        - name: CORE_PEER_TLS_ENABLED
+          value: "true"
+        - name: CORE_PEER_TLS_CERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.crt"
+        - name: CORE_PEER_TLS_KEY_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.key"
+        - name: CORE_PEER_TLS_ROOTCERT_FILE
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: /shared/crypto-config/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp
-        - name: CORE_PEER_LOCALMSPID
-          value: Org1MSP
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp"
         - name: CORE_PEER_ADDRESS
-          value: peer0.org1-example-com:7051
-        - name: GODEBUG
-          value: "netdns=go"
+          value: "peer0.org1-example-com:7051"
+        - name: CORE_PEER_LOCALMSPID
+          value: "Org1MSP"
+        workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+        command: ["sh", "-c", "peer chaincode instantiate -o ${ORDERER_URL} -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -c '{\"Args\":[\"init\",\"a\",\"100\",\"b\",\"200\"]}'"]
         volumeMounts:
-        - mountPath: /shared
-          name: nfs
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+           name: nfs
+           subPath: crypto-config
+         - mountPath: /shared/
+           name: nfs
