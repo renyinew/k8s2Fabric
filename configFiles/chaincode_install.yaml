@@ -38,13 +38,13 @@ spec:
         - name: CORE_PEER_TLS_ENABLED
           value: "true"
         - name: CORE_PEER_TLS_CERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.crt"
         - name: CORE_PEER_TLS_KEY_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.key"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.key"
         - name: CORE_PEER_TLS_ROOTCERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/ca.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp"
         - name: CORE_PEER_ADDRESS
           value: "peer0.org1-example-com:7051"
         - name: CORE_PEER_LOCALMSPID
@@ -55,7 +55,7 @@ spec:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
            subPath: artifacts/chaincode/chaincode_example02/
-         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/crypto/
            name: nfs
            subPath: crypto-config
          - mountPath: /shared/
@@ -83,13 +83,13 @@ spec:
         - name: CORE_PEER_TLS_ENABLED
           value: "true"
         - name: CORE_PEER_TLS_CERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/server.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/server.crt"
         - name: CORE_PEER_TLS_KEY_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/server.key"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/server.key"
         - name: CORE_PEER_TLS_ROOTCERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/ca.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org2-example-com/peers/peer0.org2-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2-example-com/users/Admin@org2-example-com/msp"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org2-example-com/users/Admin@org2-example-com/msp"
         - name: CORE_PEER_ADDRESS
           value: "peer0.org2-example-com:7051"
         - name: CORE_PEER_LOCALMSPID
@@ -100,7 +100,7 @@ spec:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
            subPath: artifacts/chaincode/chaincode_example02/
-         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/crypto/
            name: nfs
            subPath: crypto-config
          - mountPath: /shared/
@@ -128,13 +128,13 @@ spec:
         - name: CORE_PEER_TLS_ENABLED
           value: "true"
         - name: CORE_PEER_TLS_CERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.crt"
         - name: CORE_PEER_TLS_KEY_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.key"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/server.key"
         - name: CORE_PEER_TLS_ROOTCERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/ca.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org3-example-com/peers/peer0.org3-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org3-example-com/users/Admin@org3-example-com/msp"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org3-example-com/users/Admin@org3-example-com/msp"
         - name: CORE_PEER_ADDRESS
           value: "peer0.org3-example-com:7051"
         - name: CORE_PEER_LOCALMSPID
@@ -145,7 +145,7 @@ spec:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
            subPath: artifacts/chaincode/chaincode_example02/
-         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/crypto/
            name: nfs
            subPath: crypto-config
          - mountPath: /shared/
@@ -173,13 +173,13 @@ spec:
         - name: CORE_PEER_TLS_ENABLED
           value: "true"
         - name: CORE_PEER_TLS_CERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/server.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/server.crt"
         - name: CORE_PEER_TLS_KEY_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/server.key"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/server.key"
         - name: CORE_PEER_TLS_ROOTCERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/ca.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org4-example-com/peers/peer0.org4-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org4-example-com/users/Admin@org4-example-com/msp"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org4-example-com/users/Admin@org4-example-com/msp"
         - name: CORE_PEER_ADDRESS
           value: "peer0.org4-example-com:7051"
         - name: CORE_PEER_LOCALMSPID
@@ -190,7 +190,7 @@ spec:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
            subPath: artifacts/chaincode/chaincode_example02/
-         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/crypto/
            name: nfs
            subPath: crypto-config
          - mountPath: /shared/

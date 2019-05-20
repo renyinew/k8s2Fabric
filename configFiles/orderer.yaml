@@ -47,14 +47,12 @@ spec:
         workingDir: /opt/gopath/src/github.com/hyperledger/fabric
         command: ["orderer"]
         volumeMounts:
-         - mountPath: /var/hyperledger/orderer/msp
-           name: nfs
-           subPath: crypto-config/ordererOrganizations/example-com/orderers/orderer.example-com/msp
-         - mountPath: /var/hyperledger/orderer/tls
-           name: nfs
-           subPath: crypto-config/ordererOrganizations/example-com/orderers/orderer.example-com/tls
          - mountPath: /var/hyperledger/orderer
            name: nfs
+           subPath: crypto-config/ordererOrganizations/example-com/orderers/orderer.example-com
+         - mountPath: /var/hyperledger/orderer/genesis.block
+           name: nfs
+           subPath: genesis.block
         ports:
          - containerPort: 7050
       volumes:

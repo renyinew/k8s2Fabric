@@ -38,21 +38,21 @@ spec:
         - name: CORE_PEER_TLS_ENABLED
           value: "true"
         - name: CORE_PEER_TLS_CERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.crt"
         - name: CORE_PEER_TLS_KEY_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.key"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/server.key"
         - name: CORE_PEER_TLS_ROOTCERT_FILE
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/ca.crt"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/peers/peer0.org1-example-com/tls/ca.crt"
         - name: CORE_PEER_MSPCONFIGPATH
-          value: "/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp"
+          value: "/opt/gopath/src/github.com/hyperledger/fabric/crypto/peerOrganizations/org1-example-com/users/Admin@org1-example-com/msp"
         - name: CORE_PEER_ADDRESS
           value: "peer0.org1-example-com:7051"
         - name: CORE_PEER_LOCALMSPID
           value: "Org1MSP"
         workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-        command: ["sh", "-c", "peer chaincode instantiate --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/example-com/orderers/orderer.example-com/msp/tlscacerts/tlsca.example-com-cert.pem -o ${ORDERER_URL} -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -c '{\"Args\":[\"init\",\"a\",\"100\",\"b\",\"200\"]}'"]
+        command: ["sh", "-c", "peer chaincode instantiate --tls --cafile /opt/gopath/src/github.com/hyperledger/fabric/crypto/ordererOrganizations/example-com/orderers/orderer.example-com/msp/tlscacerts/tlsca.example-com-cert.pem -o ${ORDERER_URL} -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -c '{\"Args\":[\"init\",\"a\",\"100\",\"b\",\"200\"]}'"]
         volumeMounts:
-         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+         - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/crypto/
            name: nfs
            subPath: crypto-config
          - mountPath: /shared/
