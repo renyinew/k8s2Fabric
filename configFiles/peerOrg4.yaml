@@ -87,7 +87,7 @@ spec:
         - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
           value: "peer0.org4-example-com:7051"
         - name: CORE_PEER_LOCALMSPID
-          value: "org4MSP"
+          value: "Org4MSP"
         - name: CORE_PEER_ADDRESSAUTODETECT
           value: "true"
 
