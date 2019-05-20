@@ -1,9 +1,6 @@
 
 KUBECONFIG_FOLDER=${PWD}/configFiles
 
-kubectl delete -f ${KUBECONFIG_FOLDER}/blockchain-services.yaml
-kubectl delete -f ${KUBECONFIG_FOLDER}/blockchain-namespace.yaml
-
 kubectl delete -f ${KUBECONFIG_FOLDER}/chaincode_instantiate.yaml
 kubectl delete -f ${KUBECONFIG_FOLDER}/chaincode_install.yaml
 
@@ -26,6 +23,10 @@ kubectl delete -f ${KUBECONFIG_FOLDER}/generateArtifactsJob.yaml
 kubectl delete -f ${KUBECONFIG_FOLDER}/copyArtifactsJob.yaml
 
 kubectl delete -f ${KUBECONFIG_FOLDER}/createNfsVolume.yaml
+kubectl delete -f ${KUBECONFIG_FOLDER}/createNfsPV.yaml
+
+kubectl delete -f ${KUBECONFIG_FOLDER}/blockchain-services.yaml
+kubectl delete -f ${KUBECONFIG_FOLDER}/blockchain-namespace.yaml
 
 sleep 15
 

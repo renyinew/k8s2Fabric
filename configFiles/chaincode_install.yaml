@@ -50,11 +50,11 @@ spec:
         - name: CORE_PEER_LOCALMSPID
           value: "Org1MSP"
         workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/ "]
         volumeMounts:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
-           subPath: chaincode/chaincode_example02/
+           subPath: artifacts/chaincode/chaincode_example02/
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
            name: nfs
            subPath: crypto-config
@@ -95,11 +95,11 @@ spec:
         - name: CORE_PEER_LOCALMSPID
           value: "Org2MSP"
         workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/ "]
         volumeMounts:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
-           subPath: chaincode/chaincode_example02/
+           subPath: artifacts/chaincode/chaincode_example02/
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
            name: nfs
            subPath: crypto-config
@@ -140,11 +140,11 @@ spec:
         - name: CORE_PEER_LOCALMSPID
           value: "Org3MSP"
         workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/ "]
         volumeMounts:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
-           subPath: chaincode/chaincode_example02/
+           subPath: artifacts/chaincode/chaincode_example02/
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
            name: nfs
            subPath: crypto-config
@@ -185,13 +185,14 @@ spec:
         - name: CORE_PEER_LOCALMSPID
           value: "Org4MSP"
         workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/"]
+        command: ["sh", "-c", "peer chaincode install -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -p github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/ "]
         volumeMounts:
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/chaincode_example02/
            name: nfs
-           subPath: chaincode/chaincode_example02/
+           subPath: artifacts/chaincode/chaincode_example02/
          - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
            name: nfs
            subPath: crypto-config
          - mountPath: /shared/
            name: nfs
+---

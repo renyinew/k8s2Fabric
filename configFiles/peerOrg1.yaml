@@ -159,18 +159,9 @@ spec:
           volumeMounts:
            - mountPath: /host/var/run/
              name: run
-           - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/go/
-             name: nfs
-             subPath: chaincode/go/
            - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
              name: nfs
              subPath: crypto-config
-           - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts/
-             name: nfs
-             subPath: channel-artifacts
-           - mountPath: /opt/gopath/src/github.com/hyperledger/fabric/peer/scripts
-             name: nfs
-             subPath: scripts
       volumes:
         - name: nfs
           persistentVolumeClaim:
